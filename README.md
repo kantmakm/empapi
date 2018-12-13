@@ -1,36 +1,28 @@
 # Employee API [empapi] 
 
-Single file PHP 7 script that adds a REST API to a MySQL 5.5 InnoDB database. PostgreSQL 9.1 and MS SQL Server 2012 are fully supported. 
+Single file PHP 7 script that adds a REST API to a MySQL 5.7 InnoDB database. 
 
 NB: This is the [TreeQL](https://treeql.org) reference implementation in PHP.
 
 TB: Forked from php-crud-api at https://github.com/mevdschee/php-crud-api/
 
 ## Requirements
-
-  - PHP 7.0 or higher with PDO drivers for MySQL, PgSQL or SqlSrv enabled
+  - PHP 7.0 or higher with PDO drivers for MySQL enabled
   - MySQL 5.6 / MariaDB 10.0 or higher for spatial features in MySQL
 
 ## Known issues
-
 - Seeing integers as strings? Make sure to enable the `nd_pdo_mysql` extension and disable `pdo_mysql`.
 
 ## Installation
-
-This is a single file application! Upload "`api.php`" somewhere and enjoy!
-
-For local development you may run PHP's built-in web server:
-
-    php -S localhost:8080
-
+Upload the pre-compiled "`api.php`" to the web root of a php-enabled webserver and run.
+Requires mysql database "`employees`" - script is in src/db/employees.sql
 Test the script by opening the following URL:
 
-    http://localhost:8080/api.php/employee/posts/1
+    http://localhost:8080/api.php/records/employees
 
 Don't forget to modify the configuration at the bottom of the file.
 
 ## Configuration
-
 Edit the following lines in the bottom of the file "`api.php`":
 
     $config = new Config([
@@ -39,11 +31,9 @@ Edit the following lines in the bottom of the file "`api.php`":
         'database' => 'xxx',
     ]);
 
-This implementation is an employee database reference implementation.  Please find the database script at src/db/*.sql
-
 The code resides in the "`src`" directory. You can access it at the URL:
 
-    http://localhost:8080/src/records/posts/1
+    http://localhost:8080/src/records/employees/1
 
 You can compile all files into a single "`api.php`" file using:
 
@@ -54,17 +44,15 @@ NB: The script appends the classes in alphabetical order (directories first).
 TB:  For Configuration, Features, Limitations, and Middleware options, please reference php-crud-api at https://github.com/mevdschee/php-crud-api/
 
 
-#### Employee REST server
-
+### Employee REST server
 Methods supported:  GET, POST, PUT, DELETE [requires authorization - see .htaccess for rules]
 
-Current live implementation is using a self-signed SSL certificate - must be accepted in the browser or SSL cert verification must be disabled in Postman.
+Current live implementation is using a self-signed SSL certificate for https - must be accepted in the browser or SSL cert verification must be disabled in Postman.
 
-Create a web application that exposes REST operations for employees. The API should be able to:
+The API can:
 
-Get employees by an ID (sec issue: PII exposure with no auth)
-	
-GET request (returns Content-Type →application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/ID [bigint(8)]
+Get employees by an ID (sec issue: PII exposure with no auth)	
+- GET request (returns Content-Type →application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/ID [bigint(8)]
 		Returns Json :
 		{
 		    "id": 11,
@@ -77,8 +65,7 @@ GET request (returns Content-Type →application/json) ::  https://empapi.blockc
 		}
 
 Create new employee (sec issue: no auth required)
-		
-		POST request (Include Header - Content-Type → application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/
+- POST request (Include Header - Content-Type → application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/
 
 		Body Json Payload :
 		{
@@ -90,8 +77,7 @@ Create new employee (sec issue: no auth required)
 		}
 
 Update existing employee  (sec issue:  no auth required, PATCH request can reactivate a 'deleted' employee)
-
-		PUT request (Include Header - Content-Type → application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/ID  [bigint(8)]
+- PUT request (Include Header - Content-Type → application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/ID  [bigint(8)]
 
 		Body Json Payload :
 		{
@@ -105,15 +91,14 @@ Update existing employee  (sec issue:  no auth required, PATCH request can react
 
 
 Delete employee
-
-	DELETE request (requires Auth header Authorization → Basic d2ViOmtlbnphbjIwMTk=  (basic auth web / kenzan2019)) ::  
+- DELETE request (requires Auth header Authorization → Basic d2ViOmtlbnphbjIwMTk=  (basic auth web / kenzan2019)) ::  
 	https://empapi.blockchainindustries.io/api.php/records/employees/21
 
-		deactivates the employee record by setting status = INACTIVE
+		soft delete: deactivates the employee record by setting status = INACTIVE
 
 
 Get all employees (sec issue: PII exposure with no auth)
-	GET request (returns Content-Type →application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/
+- GET request (returns Content-Type →application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/
 	Returns Json with all active employees
 
 
@@ -129,12 +114,11 @@ DateOfEmployment - Employee start date
 Status - ACTIVE or INACTIVE
 
 ### Virtualhost configuration
-
 Sample configuration file for Apache
 
 <VirtualHost *:80>
    ServerAdmin thad@blockchainindustries.io
-   DocumentRoot "/var/www/html/php-crud-api"
+   DocumentRoot "/var/www/html/empapi"
    ServerName  54.210.168.226
    ServerAlias empapi.blockchainindustries.io
 
@@ -148,7 +132,7 @@ SetEnvIf User-Agent ".*internal dummy connection.*" dontlog
    LogLevel Warn
 
 
-   <Directory "/var/www/html/php-crud-api/">
+   <Directory "/var/www/html/empapi/">
            Options FollowSymLinks
            AllowOverride All
            Order allow,deny
@@ -161,7 +145,7 @@ SetEnvIf User-Agent ".*internal dummy connection.*" dontlog
 <VirtualHost *:443>
 
 ServerAdmin thad@blockchainindustries.io
-   DocumentRoot "/var/www/html/php-crud-api"
+   DocumentRoot "/var/www/html/empapi"
    ServerName  54.210.168.226
    ServerAlias empapi.blockchainindustries.io
 
@@ -191,7 +175,7 @@ SetEnvIf User-Agent ".*internal dummy connection.*" dontlog
 DirectoryIndex index.php index.html
    LogLevel Warn
 
-   <Directory "/var/www/html/php-crud-api">
+   <Directory "/var/www/html/empapi/">
            Options FollowSymLinks
            AllowOverride All
            Order allow,deny
@@ -202,7 +186,6 @@ DirectoryIndex index.php index.html
 
 
 #### Basic authentication
-
 The Basic type supports a file that holds the users and their (hashed) passwords separated by a colon (':').
 When the passwords are entered in plain text they fill be automatically hashed.
 The authenticated username will be stored in the `$_SESSION['username']` variable.
