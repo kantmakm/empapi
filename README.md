@@ -74,7 +74,7 @@ Create new employee (sec issue: no auth required)
     		"date_of_employment": "2018-02-15"
 		}
 
-Update existing employee  (sec issue:  no auth required, PATCH request can reactivate a 'deleted' employee)
+Update existing employee  (sec issue:  no auth required, PUT request can reactivate a 'deleted' employee)
 - PUT request (Include Header - Content-Type → application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/ID  [bigint(8)]
 
 		Body Json Payload :
