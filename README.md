@@ -50,7 +50,7 @@ Current live implementation is using a self-signed SSL certificate for https - m
 The API can:
 
 Get employees by an ID (sec issue: PII exposure with no auth)	
-- GET request (returns Content-Type →application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/ID [bigint(8)]
+- GET request (returns Content-Type →application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/11 [bigint(8)]
 		Returns Json :
 		{
 		    "id": 11,
@@ -75,7 +75,7 @@ Create new employee (sec issue: no auth required)
 		}
 
 Update existing employee  (sec issue:  no auth required, PUT request can reactivate a 'deleted' employee)
-- PUT request (Include Header - Content-Type → application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/ID  [bigint(8)]
+- PUT request (Include Header - Content-Type → application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/11  [bigint(8)]
 
 		Body Json Payload :
 		{
@@ -89,7 +89,7 @@ Update existing employee  (sec issue:  no auth required, PUT request can reactiv
 
 Delete employee
 - DELETE request (requires Auth header Authorization → Basic d2ViOmtlbnphbjIwMTk=  (basic auth web / kenzan2019)) ::  
-	https://empapi.blockchainindustries.io/api.php/records/employees/21
+	https://empapi.blockchainindustries.io/api.php/records/employees/11
 
 		soft delete: deactivates the employee record by setting status = INACTIVE
 
