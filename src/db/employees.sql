@@ -1,9 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 4.7.9
--- https://www.phpmyadmin.net/
---
 -- Host: localhost
--- Generation Time: Dec 13, 2018 at 04:53 PM
+-- Generation Time: Dec 13, 2018 at 08:28 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.1.23
 
@@ -24,12 +20,12 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `employees`;
 CREATE TABLE `employees` (
-  `id` bigint(8) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `middle_initial` char(1) DEFAULT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `date_of_birth` date DEFAULT NULL,
-  `date_of_employment` date DEFAULT NULL,
+  `ID` bigint(8) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
+  `MiddleInitial` char(1) DEFAULT NULL,
+  `LastName` varchar(50) NOT NULL,
+  `DateOfBirth` date DEFAULT NULL,
+  `DateOfEmployment` date DEFAULT NULL,
   `status` varchar(8) DEFAULT 'ACTIVE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,11 +33,11 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `first_name`, `middle_initial`, `last_name`, `date_of_birth`, `date_of_employment`, `status`) VALUES
+INSERT INTO `employees` (`ID`, `FirstName`, `MiddleInitial`, `LastName`, `DateOfBirth`, `DateOfEmployment`, `status`) VALUES
 (1, 'Bruce', 'T', 'Boss', '1966-06-20', '2016-02-15', 'INACTIVE'),
 (2, 'Jeff', 'T', 'Bosswell', '1969-06-20', '2014-02-15', 'INACTIVE'),
 (3, 'Junita', 'C', 'Xiao', '1979-06-20', '2018-02-15', 'INACTIVE'),
-(4, 'Wan', '', 'Pin', '1976-06-20', '2013-02-15', 'INACTIVE'),
+(4, 'Wan', '', 'Pin', '1976-06-20', '2013-02-15', 'ACTIVE'),
 (5, 'Tish', 'B', 'Kittens', '1978-06-20', '2014-02-15', 'ACTIVE'),
 (6, 'Anastat', 'W', 'Volder', '1928-06-20', '2004-02-15', 'ACTIVE'),
 (7, 'Patches', 'W', 'TheDogge', '1938-06-20', '2004-02-15', 'INACTIVE'),
@@ -58,7 +54,8 @@ INSERT INTO `employees` (`id`, `first_name`, `middle_initial`, `last_name`, `dat
 (20, 'Bigger', 'P', 'Digger', '1998-06-20', '2018-02-15', 'ACTIVE'),
 (21, 'Thomas', 'F', 'Blige', '1998-06-20', '2018-02-15', 'INACTIVE'),
 (22, 'Little', 'P', 'Big', '1998-06-20', '2018-02-15', 'INACTIVE'),
-(23, '那个', 'P', '龙', '1998-06-20', '2018-02-15', 'ACTIVE');
+(23, '那个', 'P', '龙', '1998-06-20', '2018-02-15', 'ACTIVE'),
+(24, '那个', 'P', '龙', '1998-06-20', '2018-02-15', 'ACTIVE');
 
 --
 -- Indexes for dumped tables
@@ -68,7 +65,7 @@ INSERT INTO `employees` (`id`, `first_name`, `middle_initial`, `last_name`, `dat
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -78,5 +75,5 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` bigint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` bigint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
