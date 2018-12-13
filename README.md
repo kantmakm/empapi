@@ -14,13 +14,12 @@ TB: Forked from php-crud-api at https://github.com/mevdschee/php-crud-api/
 - Seeing integers as strings? Make sure to enable the `nd_pdo_mysql` extension and disable `pdo_mysql`.
 
 ## Installation
-Upload the pre-compiled "`api.php`" to the web root of a php-enabled webserver and run.
+Upload the pre-compiled "`api.php`" and "`.htaccess`" files to the web root of an Apache+php7 webserver and run.
 Requires mysql database "`employees`" - script is in src/db/employees.sql
 Test the script by opening the following URL:
+    https://empapi.blockchainindustries.io/api.php/records/employees
 
-    http://localhost:8080/api.php/records/employees
-
-Don't forget to modify the configuration at the bottom of the file.
+Don't forget to modify the configuration at the bottom of the file and configure your vhost, including SSL
 
 ## Configuration
 Edit the following lines in the bottom of the file "`api.php`":
@@ -33,10 +32,9 @@ Edit the following lines in the bottom of the file "`api.php`":
 
 The code resides in the "`src`" directory. You can access it at the URL:
 
-    http://localhost:8080/src/records/employees/1
+    https://empapi.blockchainindustries.io/src/records/employees/1
 
 You can compile all files into a single "`api.php`" file using:
-
     php build.php
 
 NB: The script appends the classes in alphabetical order (directories first).
@@ -89,23 +87,20 @@ Update existing employee  (sec issue:  no auth required, PATCH request can react
 		    "status": "ACTIVE"
 		}
 
-
 Delete employee
 - DELETE request (requires Auth header Authorization → Basic d2ViOmtlbnphbjIwMTk=  (basic auth web / kenzan2019)) ::  
 	https://empapi.blockchainindustries.io/api.php/records/employees/21
 
 		soft delete: deactivates the employee record by setting status = INACTIVE
 
-
 Get all employees (sec issue: PII exposure with no auth)
 - GET request (returns Content-Type →application/json) ::  https://empapi.blockchainindustries.io/api.php/records/employees/
 	Returns Json with all active employees
 
 
-
 An employee is made up of the following data:
 
-ID  - Unique identifier for an 
+ID  - Unique identifier 
 FirstName  - Employee first name
 MiddleInitial - Employee middle initial
 LastName - Employee last name
