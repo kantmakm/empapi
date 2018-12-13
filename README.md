@@ -1,4 +1,4 @@
-# PHP-CRUD-API (v2) 
+# Employee API [empapi] 
 
 Single file PHP 7 script that adds a REST API to a MySQL 5.5 InnoDB database. PostgreSQL 9.1 and MS SQL Server 2012 are fully supported. 
 
@@ -10,8 +10,6 @@ TB: Forked from php-crud-api at https://github.com/mevdschee/php-crud-api/
 
   - PHP 7.0 or higher with PDO drivers for MySQL, PgSQL or SqlSrv enabled
   - MySQL 5.6 / MariaDB 10.0 or higher for spatial features in MySQL
-  - PostGIS 2.0 or higher for spatial features in PostgreSQL 9.1 or higher
-  - SQL Server 2012 or higher (2017 for Linux support)
 
 ## Known issues
 
