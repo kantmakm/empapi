@@ -1,6 +1,6 @@
 # Employee API [empapi] 
 
-Single file PHP 7 script that adds a REST API to a MySQL 5.7 InnoDB database. 
+Single file PHP 7 application that adds a REST API to a MySQL 5.7 InnoDB database. 
 
 NB: This is the [TreeQL](https://treeql.org) reference implementation in PHP.
 
