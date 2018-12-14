@@ -109,75 +109,75 @@ DateOfEmployment - Employee start date
 Status - ACTIVE or INACTIVE
 
 ### Virtualhost configuration
-Sample configuration file for Apache
+Sample configuration file for Apache :: 
 
-<VirtualHost *:80>
-   ServerAdmin thad@blockchainindustries.io
-   DocumentRoot "/var/www/html/empapi"
-   ServerName  54.210.168.226
-   ServerAlias empapi.blockchainindustries.io
+	<VirtualHost *:80>
+   	ServerAdmin thad@blockchainindustries.io
+   	DocumentRoot "/var/www/html/empapi"
+   	ServerName  54.210.168.226
+   	ServerAlias empapi.blockchainindustries.io
 
-SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
-SetEnvIf Remote_Addr "::1" dontlog
-SetEnvIf User-Agent ".*internal dummy connection.*" dontlog
+	SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
+	SetEnvIf Remote_Addr "::1" dontlog
+	SetEnvIf User-Agent ".*internal dummy connection.*" dontlog
 
-   ErrorLog logs/empapi.com-error_log
-   CustomLog logs/empapi.com-access_log common
-   DirectoryIndex index.php index.html jobs.xml
-   LogLevel Warn
+   	ErrorLog logs/empapi.com-error_log
+   	CustomLog logs/empapi.com-access_log common
+   	DirectoryIndex index.php index.html jobs.xml
+   	LogLevel Warn
 
 
-   <Directory "/var/www/html/empapi/">
-           Options FollowSymLinks
-           AllowOverride All
-           Order allow,deny
-           Allow from all
-   </Directory>
-           AccessFileName .htaccess
+   	<Directory "/var/www/html/empapi/">
+           	Options FollowSymLinks
+           	AllowOverride All
+           	Order allow,deny
+           	Allow from all
+   	</Directory>
+           	AccessFileName .htaccess
 
-</VirtualHost>
+	</VirtualHost>
 
-<VirtualHost *:443>
+	<VirtualHost *:443>
 
-ServerAdmin thad@blockchainindustries.io
-   DocumentRoot "/var/www/html/empapi"
-   ServerName  54.210.168.226
-   ServerAlias empapi.blockchainindustries.io
+	ServerAdmin thad@blockchainindustries.io
+   	DocumentRoot "/var/www/html/empapi"
+   	ServerName  54.210.168.226
+   	ServerAlias empapi.blockchainindustries.io
 
-SSLEngine on
-SSLProtocol all -SSLv3
-SSLProxyProtocol all -SSLv3
-SSLHonorCipherOrder on
-#SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
-#SSLProxyCipherSuite HIGH:MEDIUM:!aNULL:!MD5
-SSLCertificateFile /etc/pki/tls/certs/localhost.crt
-SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
-#SSLCertificateChainFile /etc/pki/tls/certs/server-chain.crt
-#SSLCACertificateFile /etc/pki/tls/certs/ca-bundle.crt
-#SSLVerifyClient require
-#SSLVerifyDepth  10
-BrowserMatch "MSIE [2-5]" \
-         nokeepalive ssl-unclean-shutdown \
-         downgrade-1.0 force-response-1.0
+	SSLEngine on
+	SSLProtocol all -SSLv3
+	SSLProxyProtocol all -SSLv3
+	SSLHonorCipherOrder on
+	#SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
+	#SSLProxyCipherSuite HIGH:MEDIUM:!aNULL:!MD5
+	SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+	SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+	#SSLCertificateChainFile /etc/pki/tls/certs/server-chain.crt
+	#SSLCACertificateFile /etc/pki/tls/certs/ca-bundle.crt
+	#SSLVerifyClient require
+	#SSLVerifyDepth  10
+	BrowserMatch "MSIE [2-5]" \
+         	nokeepalive ssl-unclean-shutdown \
+         	downgrade-1.0 force-response-1.0
 
-SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
-SetEnvIf Remote_Addr "::1" dontlog
-SetEnvIf User-Agent ".*internal dummy connection.*" dontlog
+	SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
+	SetEnvIf Remote_Addr "::1" dontlog
+	SetEnvIf User-Agent ".*internal dummy connection.*" dontlog
 
-   ErrorLog logs/ssl.com-error_log
-   CustomLog logs/ssl.com-access_log combined env=!dontlog
+   	ErrorLog logs/ssl.com-error_log
+   	CustomLog logs/ssl.com-access_log combined env=!dontlog
 
-DirectoryIndex index.php index.html
-   LogLevel Warn
+	DirectoryIndex index.php index.html
+   	LogLevel Warn
 
-   <Directory "/var/www/html/empapi/">
-           Options FollowSymLinks
-           AllowOverride All
-           Order allow,deny
-           Allow from all
-   </Directory>
-           AccessFileName .htaccess
-</VirtualHost>
+   	<Directory "/var/www/html/empapi/">
+           	Options FollowSymLinks
+           	AllowOverride All
+           	Order allow,deny
+           	Allow from all
+   	</Directory>
+           	AccessFileName .htaccess
+	</VirtualHost>
 
 
 #### Basic authentication
